@@ -17,8 +17,9 @@ public class RainfallStatsTest {
 	 * should throw an IllegalStateException.
 	 */
 	@Test
-	public void testMeanOfNoMeasurements() {
+	public void testMeanOfNoMeasurements() throws IllegalStateException {
 		// TODO: write unit test
+		assertEquals(0, stats.getCount());
 	}
 	
 	/*
@@ -26,8 +27,9 @@ public class RainfallStatsTest {
 	 * should throw an IllegalStateException.
 	 */
 	@Test
-	public void testMaxOfNoMeasurements() {
+	public void testMaxOfNoMeasurements() throws IllegalStateException {
 		// TODO: write unit test
+		assertEquals(0, stats.getCount());
 	}
 	
 	/*
@@ -47,8 +49,10 @@ public class RainfallStatsTest {
 	 * if the measurement is negative.
 	 */
 	@Test
-	public void testAddInvalidMeasurement() {
+	public void testAddInvalidMeasurement() throws InvalidRainfallException{
 		// TODO: write unit test
+		stats.addMeasurement(4.0);
+		assertEquals(1, stats.getCount());
 	}
 	
 	/*

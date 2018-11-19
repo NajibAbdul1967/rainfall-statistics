@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class RainfallProgram {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InvalidRainfallException {
 		BufferedReader keyboard = new BufferedReader(
 			new InputStreamReader(System.in)
 		);
@@ -15,18 +15,31 @@ public class RainfallProgram {
 			if("end".equals(line)) {
 				break;
 			}
-			
-			// TODO: parse the measurement and add it to stats
-			
-			// TODO: print a message if the measurement is negative
-			
-			// TODO: print a message if the measurement cannot be parsed
+			try {
+			double measurement = Double.parseDouble(line);
+			if(measurement<0) {
+				System.out.println("ERROR negative number");
+			}else  {
+				
+				stats.addMeasurement(Double.parseDouble(line));
+			}
+
+		}catch(NumberFormatException e) {
+			System.out.println("Invalid measurement ");
+			}
 		}
-		
+
+		try {
 		System.out.println(stats.getCount() + " measurement(s) entered.");
 		
 		// TODO: prevent the exception when no measurements have been entered.
+		
 		System.out.println("Mean rainfall: " + stats.getMean() + " mm");
 		System.out.println("Maximum rainfall: " + stats.getMax() + " mm");
+		}catch(IllegalStateException ie) {
+			System.out.println("No measurements added ");
+		}
 	}
-}
+		
+	}
+
